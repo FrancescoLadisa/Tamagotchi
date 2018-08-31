@@ -21,6 +21,7 @@ public class Tamagotchi {
 	private static final String nomeTama = "Il Tamagotchi creato si chiama: ";
 	private static final String sazieta = "Il livello di sazieta' e': ";
 	private static final String soddisfazione = "Il livello di soddisfazione e': ";
+	private static final String tamaInfelice = " e' infelice, dagli carezze o biscotti.";
 	private static final String aCapo = "\n";
 	
 	public Tamagotchi(String _nome, int _gradoSoddisfazione, int _gradoSazieta) {
@@ -35,8 +36,9 @@ public class Tamagotchi {
 	public void riceviCarezze(int _numeroCarezze) {
 		
 		this.numeroCarezze = _numeroCarezze;
+		int controllo = numeroCarezze + gradoSoddisfazione;
 		
-		if(gradoSoddisfazione > 0 && gradoSoddisfazione < 100) {
+		if(gradoSoddisfazione > MINIMO && gradoSoddisfazione < MASSIMO && controllo < MASSIMO) {
 			
 			gradoSoddisfazione += numeroCarezze;
 			gradoSazieta -= (numeroCarezze / 2);
@@ -103,7 +105,7 @@ public class Tamagotchi {
 			
 		}
 		
-		if(gradoSazieta < 30) {
+		else if(gradoSazieta < 30) {
 			
 			controllo = true;
 			
@@ -116,24 +118,32 @@ public class Tamagotchi {
 	//Metodo per la visualizzazione dello stato del Tamagotchi
 	public String visualizzaStato() {
 		
-		String stato;
-		boolean morto, infelice;
+		String stato = null;
+		boolean morto = false, infelice = false;
 		
 		morto = controllaMorte();
 		infelice = controllaFelicita();
 		
+		if(morto){    
+			
+			stato = nome + mortoDelTutto + aCapo + sazieta + gradoSazieta + aCapo + soddisfazione + gradoSoddisfazione + aCapo;
+			return stato;
+			
+		}
+		if(infelice) {
+			
+			stato = nome + tamaInfelice + aCapo + sazieta + gradoSazieta + aCapo + soddisfazione + gradoSoddisfazione + aCapo;
+			return stato;
+		
+		}
 		if(!morto && !infelice) {
-		
+			
 			stato = nomeTama + nome + aCapo + sazieta + gradoSazieta + aCapo + soddisfazione + gradoSoddisfazione + aCapo;
-			
-		}
-		else {
-			
-			stato = mortoDelTutto;
+			return stato;
 			
 		}
 		
-		return stato;
+		return null;
 		
 	}
 	
