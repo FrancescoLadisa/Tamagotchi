@@ -5,19 +5,23 @@ import java.util.*;
 public class TamaZoo {
 	
 	//ArrayList di Object per inserimento di più specie di Tamagotchi
-	private ArrayList<Object> tamazoo;	
-	
-	//Tamagotchi Standard
-	private Tamagotchi tamagotchi;
+	private ArrayList<Object> tamazoo;
 	
 	public TamaZoo() {
 		this.tamazoo = new ArrayList<>();
 	}
 	
-	public void creaTamagotchi(String _nome, int _gradoSoddisfazione, int _gradoSazieta) {
+	//Visualizzazione dei Tamagotchi presenti nello zoo
+	public void visualizzaLoZoo() {
 		
-		this.tamagotchi = new Tamagotchi(_nome, _gradoSoddisfazione, _gradoSazieta);
+		Tamagotchi tama;
 		
+		for(int i=0;i<tamazoo.size();i++) {
+			
+			tama = (Tamagotchi)(tamazoo.get(i));
+			tama.visualizzaStato();
+			
+		}
 		
 	}
 	

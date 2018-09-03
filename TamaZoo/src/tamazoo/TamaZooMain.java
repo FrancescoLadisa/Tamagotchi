@@ -13,8 +13,8 @@ public class TamaZooMain {
 	private static final String numeroCarezze = "Numero delle carezze che gli stai dando: ";
 	private static final String aCapo = "\n";
 	
-	private static final int MINIMO = 1;
-	private static final int MASSIMO = 99;
+	private static final int MINIMO = 0;
+	private static final int MASSIMO = 100;
 	
 	public static void main(String[] args) {
 		
