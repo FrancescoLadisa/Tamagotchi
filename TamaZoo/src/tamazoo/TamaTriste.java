@@ -16,9 +16,10 @@ public class TamaTriste extends Tamagotchi{
 	private static final String mortoNoAffetto = " e' morto per mancanza di affetto";
 	private static final String mortoNoCibo = " e' morto di fame";
 	private static final String mortoTroppoCibo = " e' morto perche' gli hai dato troppi biscotti";
-	private static final String mortoDelTutto = "Il tuo Tamagotchi e' morto malissimo";
+	private static final String mortoDelTutto = "e' morto";
 	private static final String nomeTama = "Il Tamagotchi creato si chiama: ";
 	private static final String sazieta = "Il livello di sazieta' e': ";
+	private static final String specie = "Appartiene alla specie: TamaTriste";
 	private static final String soddisfazione = "Il livello di soddisfazione e': ";
 	private static final String tamaInfelice = " e' infelice, dagli carezze o biscotti.";
 	private static final String aCapo = "\n";
@@ -55,6 +56,21 @@ public class TamaTriste extends Tamagotchi{
 		}
 		
 		return controllo;
+		
+	}
+	
+	//Visualizza lo stato del Tamatriste
+	public String toString() {
+		
+		boolean morto = controllaMorte();
+		
+		if(morto) {
+			return aCapo + nomeTama + nome + mortoDelTutto;
+		}
+		else {
+			return aCapo + nomeTama + nome + aCapo + specie + aCapo + sazieta 
+				   + gradoSazieta + aCapo + soddisfazione + gradoSoddisfazione + aCapo;
+		}
 		
 	}
 	

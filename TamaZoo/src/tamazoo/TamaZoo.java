@@ -11,15 +11,24 @@ public class TamaZoo {
 		this.tamazoo = new ArrayList<>();
 	}
 	
+	public void aggiungiTama(Object tamagotchi) {
+		
+		tamazoo.add(tamagotchi);
+		
+	}
+	
+	public void rimuoviTama(Object tamagotchi) {
+		
+		tamazoo.remove(tamagotchi);
+		
+	}
+	
 	//Visualizzazione dei Tamagotchi presenti nello zoo
 	public void visualizzaLoZoo() {
 		
-		Tamagotchi tama;
-		
 		for(int i=0;i<tamazoo.size();i++) {
 			
-			tama = (Tamagotchi)(tamazoo.get(i));
-			tama.visualizzaStato();
+			System.out.println(tamazoo.get(i));
 			
 		}
 		

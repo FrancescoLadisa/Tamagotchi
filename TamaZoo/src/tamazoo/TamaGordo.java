@@ -82,7 +82,7 @@ public class TamaGordo extends Tamagotchi{
 	public String toString() {
 		
 		return aCapo + nomeTama + nome + aCapo + specie + aCapo + sazieta 
-			   + gradoSazieta + soddisfazione + gradoSoddisfazione + aCapo;
+			   + gradoSazieta + aCapo + soddisfazione + gradoSoddisfazione + aCapo;
 		
 	}
 	

@@ -116,7 +116,7 @@ public class Tamagotchi {
 	}
 	
 	//Metodo per la visualizzazione dello stato del Tamagotchi
-	public String visualizzaStato() {
+	public String toString() {
 		
 		String stato = null;
 		boolean morto = false, infelice = false;
