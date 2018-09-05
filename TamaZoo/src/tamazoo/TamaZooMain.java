@@ -12,6 +12,7 @@ public class TamaZooMain {
 	private static final String carezzeBiscotti = "Vuoi dare al Tamagotchi delle carezze o dei biscotti? ";
 	private static final String numeroBiscotti = "Numero dei biscotti che gli stai dando: ";
 	private static final String numeroCarezze = "Numero delle carezze che gli stai dando: ";
+	private static final String finito = "Non ci sono piu' Tamagotchi da accudire...";
 	private static final String aCapo = "\n";
 	
 	private static final int MINIMO = 0;
@@ -59,9 +60,58 @@ public class TamaZooMain {
 		
 	}
 	
+	private static int generaCarezze() {
+		
+		int carezze = NumeriCasuali.estraiIntero(MINIMO, MASSIMO);
+		return carezze;
+		
+	}
+	
+	private static int generaBiscotti() {
+		
+		int biscotti = NumeriCasuali.estraiIntero(MINIMO, MASSIMO);
+		return biscotti;
+		
+	}
+	
 	private static void visualizzaZoo(TamaZoo zoo) {
 		
 		zoo.visualizzaLoZoo();
+		
+	}
+	
+	private static void alimentaTamagotchiNelloZoo(TamaZoo zoo, int numTama) {
+		
+		String scelta;
+		
+		while(numTama > 0) {
+			
+			//Numero dei Tamagotchi presenti all'interno dello zoo (aggiornato ad ogni interazione)
+			numTama = zoo.numeroTama();
+			
+			//Somministrazione carezze o biscotti
+			scelta = (InputDati.leggiStringaNonVuota(carezzeBiscotti)).toLowerCase();
+			System.out.println("Numero dei Tamagotchi: "+numTama);
+			
+			switch(scelta) {
+				case "carezze":	int carezze = generaCarezze();
+								System.out.println("Numero di carezze generate: "+carezze);
+								for(int i=0;i<numTama;i++) {
+									zoo.tamagotchi(i).riceviCarezze(carezze);
+								}
+								break;
+				case "biscotti":int biscotti = generaBiscotti();
+								System.out.println("Numero di biscotti generati: "+biscotti);
+								for(int i=0;i<numTama;i++) {
+									zoo.tamagotchi(i).mangiaBiscotti(biscotti);
+								}
+								break;
+			}
+			
+			//Visualizzazione dello stato dello zoo
+			visualizzaZoo(zoo);
+			
+		}
 		
 	}
 	
@@ -76,9 +126,13 @@ public class TamaZooMain {
 		//Creazione del TamaZoo
 		TamaZoo zoo = creaTamaZoo(numTama);
 		
+		//Si prende cura dei Tamagotchi creati
+		alimentaTamagotchiNelloZoo(zoo, numTama);
 		
-		//Visualizzazione dello stato dello zoo
-		visualizzaZoo(zoo);
+		//Se il numero dei Tamagotchi allo zoo ha raggiunto il minimo allora termina
+		if(numTama == 0) {
+			System.out.println(finito);
+		}
 		
 	}
 

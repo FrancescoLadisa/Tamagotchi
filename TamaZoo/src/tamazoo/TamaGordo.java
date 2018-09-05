@@ -11,16 +11,20 @@ public class TamaGordo extends Tamagotchi{
 	private int gradoSoddisfazione = 100;		//Grado di soddisfazione sempre a 100, felice
 	private int gradoSazieta;					//Grado di sazietà
 	
-	private static final String mortoNoCibo = " e' morto di fame";
-	private static final String nomeTama = "Il Tamagotchi creato si chiama: ";
+	private static final String nomeTama = "Nome: ";
+	private static final String mortoDelTutto = " e' morto";
 	private static final String specie = "Appartiene alla specie: TamaGordo";
 	private static final String sazieta = "Il livello di sazieta' e': ";
 	private static final String soddisfazione = "Il livello di soddisfazione e': ";
-	private static final String tamaInfelice = " e' infelice, dagli biscotti.";
 	private static final String aCapo = "\n";
 	
 	public TamaGordo(String _nome, int _gradoSoddisfazione, int _gradoSazieta) {
+		
 		super(_nome, _gradoSoddisfazione, _gradoSazieta);
+		this.nome = _nome;
+		this.gradoSoddisfazione = _gradoSoddisfazione;
+		this.gradoSazieta = _gradoSazieta;
+		
 	}
 	
 	//Il tamagordo mangia solo i biscotti, se ne mangia pochi e 
@@ -68,7 +72,7 @@ public class TamaGordo extends Tamagotchi{
 		boolean controllo = false;
 		
 		//Se il grado di sazietà raggiunge lo 0 anche in questo caso muore
-		if(gradoSazieta == MINIMO) {
+		if(gradoSazieta <= MINIMO) {
 			
 			controllo = true;
 			
@@ -81,8 +85,15 @@ public class TamaGordo extends Tamagotchi{
 	//Visualizza lo stato del Tamagordo
 	public String toString() {
 		
-		return aCapo + nomeTama + nome + aCapo + specie + aCapo + sazieta 
-			   + gradoSazieta + aCapo + soddisfazione + gradoSoddisfazione + aCapo;
+		boolean morto = controllaMorte();
+		
+		if(morto) {
+			return aCapo + nome + mortoDelTutto;
+		}
+		else{
+			return aCapo + nomeTama + nome + aCapo + specie + aCapo + sazieta 
+				+ gradoSazieta + aCapo + soddisfazione + gradoSoddisfazione + aCapo;
+		}
 		
 	}
 	

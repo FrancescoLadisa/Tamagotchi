@@ -17,8 +17,9 @@ public class Tamagotchi {
 	private static final String mortoNoAffetto = " e' morto per mancanza di affetto";
 	private static final String mortoNoCibo = " e' morto di fame";
 	private static final String mortoTroppoCibo = " e' morto perche' gli hai dato troppi biscotti";
-	private static final String mortoDelTutto = "Il tuo Tamagotchi e' morto malissimo";
-	private static final String nomeTama = "Il Tamagotchi creato si chiama: ";
+	private static final String mortoDelTutto = " e' morto";
+	private static final String nomeTama = "Nome: ";
+	private static final String specie = "Appartiene alla specie: Tamagotchi";
 	private static final String sazieta = "Il livello di sazieta' e': ";
 	private static final String soddisfazione = "Il livello di soddisfazione e': ";
 	private static final String tamaInfelice = " e' infelice, dagli carezze o biscotti.";
@@ -67,7 +68,7 @@ public class Tamagotchi {
 		boolean controllo = false;
 		
 		//Se il grado di soddisfazione raggiunge lo 0 allora muore
-		if(gradoSoddisfazione == MINIMO) {
+		if(gradoSoddisfazione <= MINIMO) {
 			
 			controllo = true;
 			System.out.println(nome+mortoNoAffetto);
@@ -75,7 +76,7 @@ public class Tamagotchi {
 		}
 		
 		//Se il grado di sazietà raggiunge lo 0 anche in questo caso muore
-		if(gradoSazieta == MINIMO) {
+		if(gradoSazieta <= MINIMO) {
 			
 			controllo = true;
 			System.out.println(nome+mortoNoCibo);
@@ -124,26 +125,23 @@ public class Tamagotchi {
 		morto = controllaMorte();
 		infelice = controllaFelicita();
 		
-		if(morto){    
-			
-			stato = nome + mortoDelTutto + aCapo + sazieta + gradoSazieta + aCapo + soddisfazione + gradoSoddisfazione + aCapo;
-			return stato;
-			
+		if(morto && !infelice){
+			stato = nome + mortoDelTutto + aCapo + specie + aCapo 
+					+ sazieta + gradoSazieta + aCapo + soddisfazione 
+					+ gradoSoddisfazione + aCapo;
 		}
-		if(infelice) {
-			
-			stato = nome + tamaInfelice + aCapo + sazieta + gradoSazieta + aCapo + soddisfazione + gradoSoddisfazione + aCapo;
-			return stato;
 		
+		if(infelice && !morto) {
+			stato = nome + tamaInfelice + aCapo + sazieta + gradoSazieta + aCapo 
+					+ soddisfazione + gradoSoddisfazione + aCapo;
 		}
+		
 		if(!morto && !infelice) {
-			
-			stato = nomeTama + nome + aCapo + sazieta + gradoSazieta + aCapo + soddisfazione + gradoSoddisfazione + aCapo;
-			return stato;
-			
+			stato = nomeTama + nome + aCapo + sazieta + gradoSazieta + aCapo + 
+					soddisfazione + gradoSoddisfazione + aCapo;
 		}
 		
-		return null;
+		return stato;
 		
 	}
 	
