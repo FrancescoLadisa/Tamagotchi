@@ -41,13 +41,23 @@ public class TamaZoo {
 	public void visualizzaLoZoo() {
 		
 		Tamagotchi tama;
+		int dimensioni;
 		
-		for(int i=0;i<tamazoo.size();i++) {
+		dimensioni = tamazoo.size();
+		
+		for(int i=0;i<dimensioni;i++) {
+			
+			tama = (Tamagotchi) (tamazoo.get(i));
+			System.out.println(tama.toString());
+			
+		}
+		
+		for(int i=0;i<dimensioni;i++) {
 			
 			tama = (Tamagotchi) (tamazoo.get(i));
 			controllaMorte(tama);
-			System.out.println(tama.toString());
-			
+			dimensioni = tamazoo.size();
+			System.out.println(dimensioni);
 		}
 		
 	}

@@ -80,9 +80,10 @@ public class TamaZooMain {
 		
 	}
 	
-	private static void alimentaTamagotchiNelloZoo(TamaZoo zoo, int numTama) {
+	private static int alimentaTamagotchiNelloZoo(TamaZoo zoo, int numTama) {
 		
 		String scelta;
+		int carezze, biscotti;
 		
 		while(numTama > 0) {
 			
@@ -94,13 +95,13 @@ public class TamaZooMain {
 			System.out.println("Numero dei Tamagotchi: "+numTama);
 			
 			switch(scelta) {
-				case "carezze":	int carezze = generaCarezze();
+				case "carezze":	carezze = generaCarezze();
 								System.out.println("Numero di carezze generate: "+carezze);
 								for(int i=0;i<numTama;i++) {
 									zoo.tamagotchi(i).riceviCarezze(carezze);
 								}
 								break;
-				case "biscotti":int biscotti = generaBiscotti();
+				case "biscotti":biscotti = generaBiscotti();
 								System.out.println("Numero di biscotti generati: "+biscotti);
 								for(int i=0;i<numTama;i++) {
 									zoo.tamagotchi(i).mangiaBiscotti(biscotti);
@@ -112,6 +113,8 @@ public class TamaZooMain {
 			visualizzaZoo(zoo);
 			
 		}
+		
+		return numTama;
 		
 	}
 	
@@ -127,7 +130,7 @@ public class TamaZooMain {
 		TamaZoo zoo = creaTamaZoo(numTama);
 		
 		//Si prende cura dei Tamagotchi creati
-		alimentaTamagotchiNelloZoo(zoo, numTama);
+		numTama = alimentaTamagotchiNelloZoo(zoo, numTama);
 		
 		//Se il numero dei Tamagotchi allo zoo ha raggiunto il minimo allora termina
 		if(numTama == 0) {

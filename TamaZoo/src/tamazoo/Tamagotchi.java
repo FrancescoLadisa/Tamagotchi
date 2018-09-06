@@ -14,9 +14,6 @@ public class Tamagotchi {
 	private int gradoSoddisfazione;				//Grado di soddisfazione
 	private int gradoSazieta;					//Grado di sazietà
 	
-	private static final String mortoNoAffetto = " e' morto per mancanza di affetto";
-	private static final String mortoNoCibo = " e' morto di fame";
-	private static final String mortoTroppoCibo = " e' morto perche' gli hai dato troppi biscotti";
 	private static final String mortoDelTutto = " e' morto";
 	private static final String nomeTama = "Nome: ";
 	private static final String specie = "Appartiene alla specie: Tamagotchi";
@@ -37,7 +34,8 @@ public class Tamagotchi {
 	public void riceviCarezze(int _numeroCarezze) {
 		
 		this.numeroCarezze = _numeroCarezze;
-		int controllo = numeroCarezze + gradoSoddisfazione;
+		int controllo;
+		controllo = numeroCarezze + gradoSoddisfazione;
 		
 		if(gradoSoddisfazione > MINIMO && gradoSoddisfazione < MASSIMO && controllo < MASSIMO) {
 			
@@ -51,7 +49,8 @@ public class Tamagotchi {
 	public void mangiaBiscotti(int _numeroBiscotti) {
 		
 		this.numeroBiscotti = _numeroBiscotti;
-		int percentuale = numeroBiscotti / 10;
+		int percentuale;
+		percentuale = numeroBiscotti / 10;
 		
 		if(gradoSazieta > MINIMO && gradoSazieta < MASSIMO) {
 			
@@ -71,7 +70,6 @@ public class Tamagotchi {
 		if(gradoSoddisfazione <= MINIMO) {
 			
 			controllo = true;
-			System.out.println(nome+mortoNoAffetto);
 			
 		}
 		
@@ -79,7 +77,6 @@ public class Tamagotchi {
 		if(gradoSazieta <= MINIMO) {
 			
 			controllo = true;
-			System.out.println(nome+mortoNoCibo);
 			
 		}
 		
@@ -87,7 +84,6 @@ public class Tamagotchi {
 		if(gradoSazieta >= MASSIMO) {
 			
 			controllo = true;
-			System.out.println(nome+mortoTroppoCibo);
 			
 		}
 		
@@ -126,18 +122,16 @@ public class Tamagotchi {
 		infelice = controllaFelicita();
 		
 		if(morto && !infelice){
-			stato = nome + mortoDelTutto + aCapo + specie + aCapo 
-					+ sazieta + gradoSazieta + aCapo + soddisfazione 
-					+ gradoSoddisfazione + aCapo;
+			stato = aCapo + nome + mortoDelTutto;
 		}
 		
 		if(infelice && !morto) {
-			stato = nome + tamaInfelice + aCapo + sazieta + gradoSazieta + aCapo 
+			stato = nome + tamaInfelice + aCapo + specie + aCapo + sazieta + gradoSazieta + aCapo 
 					+ soddisfazione + gradoSoddisfazione + aCapo;
 		}
 		
 		if(!morto && !infelice) {
-			stato = nomeTama + nome + aCapo + sazieta + gradoSazieta + aCapo + 
+			stato = nomeTama + nome + aCapo + specie + aCapo + sazieta + gradoSazieta + aCapo + 
 					soddisfazione + gradoSoddisfazione + aCapo;
 		}
 		

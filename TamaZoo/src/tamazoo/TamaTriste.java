@@ -59,7 +59,7 @@ public class TamaTriste extends Tamagotchi{
 		boolean morto = controllaMorte();
 		
 		if(morto) {
-			return aCapo + nomeTama + nome + mortoDelTutto;
+			return aCapo + nome + mortoDelTutto;
 		}
 		else {
 			return aCapo + nomeTama + nome + aCapo + specie + aCapo + sazieta 
